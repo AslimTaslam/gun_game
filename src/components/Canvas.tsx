@@ -1,9 +1,10 @@
+import {useEffect} from "react";
 import Sky from "./Sky";
 import Ground from "./Ground";
 import CannonBase from "./CannonBase";
 import CannonPipe from "./CannonPipe";
 
-const Canvas = () => {
+const Canvas = ({angle, trackMouse}: {angle: number, trackMouse: any}) => {
 	const viewBox: string = `${window.innerWidth / -2}, ${100 - window.innerHeight}, ${window.innerWidth}, ${window.innerHeight}`;
 
 	return (
@@ -11,10 +12,11 @@ const Canvas = () => {
 			id="aliens-go-home-canvas"
 			preserveAspectRatio="xMaxYMax none"
 			viewBox={viewBox}
+			onMouseMove={trackMouse}
 		>
 			<Sky/>
 			<Ground/>
-			<CannonPipe rotation={35}/>
+			<CannonPipe rotation={angle}/>
 			<CannonBase/>
 		</svg>
 	);

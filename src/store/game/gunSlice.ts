@@ -1,20 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
+import { calculateAngle } from "../../utils/formula";
+
+type PointsType = {
+	x: number,
+	y: number
+};
 
 interface GunObjectState {
-	mousePosition: number[]
+	angle: number
 };
 
 const initialState: GunObjectState = {
-	mousePosition: []
+	angle: 35
 };
 
 export const gunObjectSlice = createSlice({
 	name: "gunObject",
 	initialState,
 	reducers: {
-		moveObjects: (state, action: PayloadAction<number[]>) => {
-			state.mousePosition = action.payload;
+		moveObjects: (state, action: PayloadAction<PointsType>) => {
+			if(!action.payload) return state;
+			const { x, y } = action.payload;
+			const angle = calculateAngle(0, 0, x, y);
+			state.angle = angle;
 		}
 	}
 });
