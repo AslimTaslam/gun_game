@@ -13,8 +13,8 @@ const CannonBall = ({position}: {position: PointsType}) => {
 			style={ballStyle}
 			cx={x}
 			cy={y}
-			rx="16"
-			ry="16"
+			rx="14"
+			ry="14"
 		/>
 	);
 }

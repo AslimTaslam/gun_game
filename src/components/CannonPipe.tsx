@@ -9,10 +9,10 @@ const CannonPipe = ({rotation}: {rotation: number}) => {
 
 	const transform: string = `rotate(${rotation}, 0, 0)`;
 
-	const muzzleWidth: number = 40;
-	const halfMuzzle: number = 20;
-	const height: number = 100;
-	const yBasis: number = 70;
+	const muzzleWidth: number = 30;
+	const halfMuzzle: number = 15;
+	const height: number = 75;
+	const yBasis: number = 52.5;
 
 	const cubicBezierCurve = {
 		initialAxis: {
@@ -20,11 +20,11 @@ const CannonPipe = ({rotation}: {rotation: number}) => {
 			y: -yBasis
 		},
 		initialControlPoint: {
-			x: -40,
+			x: -30,
 			y: height * 1.7
 		},
 		endingControlPoint: {
-			x: 80,
+			x: 60,
 			y: height * 1.7
 		},
 		endingAxis: {
