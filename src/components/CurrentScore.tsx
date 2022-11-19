@@ -1,5 +1,7 @@
-const CurrentScore = ({score}: {score: number}) => {
+import { PointsType } from "../models/models";
 
+const CurrentScore = ({score, position}: {score: number, position: PointsType}) => {
+	const { x, y } = position;
 	const scoreStyle = {
 		fontFamily: '"Joti One", cursive',
 		fontSize: 50,
@@ -10,8 +12,8 @@ const CurrentScore = ({score}: {score: number}) => {
 		<g filter="url(#shadow)">
 			<text
 				style={scoreStyle}
-				x="100"
-				y="80"
+				x={x}
+				y={y}
 			>
 				{score}
 			</text>
