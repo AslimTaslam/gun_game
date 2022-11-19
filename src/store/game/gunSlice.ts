@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
 import { calculateAngle } from "../../utils/formula";
-
-type PointsType = {
-	x: number,
-	y: number
-};
+import { PointsType } from "../../models/models";
 
 interface GunObjectState {
 	angle: number

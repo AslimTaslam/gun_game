@@ -1,9 +1,6 @@
-type PointsName = "initialAxis" | "initialControlPoint" | "endingControlPoint" | "endingAxis";
+import { PointsType, EventPointsType } from "../models/models";
 
-interface PointsType {
-	x: number,
-	y: number
-};
+type PointsName = "initialAxis" | "initialControlPoint" | "endingControlPoint" | "endingAxis";
 
 export function pathFromBezierCurve(cubicBezierCurve: Record<PointsName, PointsType>): string {
   const {
@@ -34,12 +31,6 @@ export function calculateAngle(x1: number, y1: number, x2: number, y2: number): 
 	
 	return radiansToDegrees(Math.atan(quotient)) * -1;
 }
-
-interface EventPointsType {
-	clientX: number,
-	clientY: number
-};
-
 
 export function getCanvasPosition(event: EventPointsType): PointsType {
 	const svg: any = document.getElementById("aliens-go-home-canvas");

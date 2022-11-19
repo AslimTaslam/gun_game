@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
+import { PointsType } from "../models/models";
 
-interface Ixy {
-	x: number,
-	y: number
-}
-
-export function useDebounce(value: Ixy, delay: number = 300): Ixy {
+export function useDebounce(value: PointsType, delay: number = 300): PointsType {
 	const [ debounced, setDebounced ] = useState(value);
 
 	useEffect(() => {

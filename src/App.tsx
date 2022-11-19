@@ -21,7 +21,7 @@ const App = () => {
 			dispatch(moveObjects(debounced));
 		}
 	}, [debounced]);
-	console.log(positionMouse);
+
   return (
 		<Canvas
 			trackMouse={(event: MouseEvent) => trackMouse(event)}
