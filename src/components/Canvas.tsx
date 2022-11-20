@@ -1,4 +1,5 @@
 import {useEffect, MouseEvent} from "react";
+import {gameHeight} from "../utils/constants";
 import Sky from "./Sky";
 import Ground from "./Ground";
 import CannonBase from "./CannonBase";
@@ -7,9 +8,11 @@ import CannonBall from "./CannonBall";
 import CurrentScore from "./CurrentScore";
 import FlyingObject from "./FlyingObject";
 import Heart from "./Heart";
+import StartGame from "./StartGame";
+import Title from "./Title";
 
 const Canvas = ({angle, trackMouse}: {angle: number, trackMouse: any}) => {
-	const viewBox: string = `${window.innerWidth / -2}, ${100 - window.innerHeight}, ${window.innerWidth}, ${window.innerHeight}`;
+	const viewBox: string = `${window.innerWidth / -2}, ${100 - gameHeight}, ${window.innerWidth}, ${window.innerHeight}`;
 
 	return (
 		<svg
@@ -32,6 +35,8 @@ const Canvas = ({angle, trackMouse}: {angle: number, trackMouse: any}) => {
 			<Heart position={{x: -150, y: 50}}/>
 			<FlyingObject position={{x: 120, y: -350}}/>
 			<FlyingObject position={{x: -120, y: -350}}/>
+			<StartGame onClick={(): void => console.log("Aliens go home")}/>
+			<Title/>
 		</svg>
 	);
 }
