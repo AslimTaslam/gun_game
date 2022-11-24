@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { gunObjectReducer } from "./game/gunSlice";
+import { gameReducer } from "./game/gameSlice";
 
 export const store = configureStore({
 	reducer: {
+		game: gameReducer,
 		gunObject: gunObjectReducer
 	}
 });

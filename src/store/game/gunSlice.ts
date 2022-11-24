@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../index";
 import { calculateAngle } from "../../utils/formula";
 import { PointsType } from "../../models/models";
 
