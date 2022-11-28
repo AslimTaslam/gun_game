@@ -19,6 +19,6 @@ export interface IGameState {
 	kills: number,
 	lives: number,
 	flyingObjects: IFlyingObject[] | [],
-	lastObjectCreatedAt: Date
+	lastObjectCreatedAt: number
 };
 

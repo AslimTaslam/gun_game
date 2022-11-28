@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "./hooks/rtkHooks";
 import Canvas from "./components/Canvas";
 import { getCanvasPosition } from "./utils/formula";
 import { moveObjects } from "./store/game/gunSlice";
-import { startGame } from "./store/game/gameSlice";
+import { startGame, createFlyingObjects } from "./store/game/gameSlice";
 import { useDebounce } from "./hooks/debounce";
 
 const App = () => {
@@ -34,6 +34,13 @@ const App = () => {
 	useEffect(() => {
 		windowResize();
 	}, [window]);
+
+	useEffect(() => {
+		if(game.flyingObjects.length < 4) {
+			const flyingObjInt = setInterval(() => dispatch(createFlyingObjects()), 5000);
+		return () => clearInterval(flyingObjInt);
+		}
+	});
 
 	return (
 		<Canvas

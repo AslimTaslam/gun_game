@@ -7,16 +7,19 @@ const initialState: IGameState = {
 	kills: 0,
 	lives: 3,
 	flyingObjects: [],
-	lastObjectCreatedAt: new Date()
+	lastObjectCreatedAt: new Date().getTime()
 };
 
-const createFlyingObjects = (state : IGameState) => {
+const createFlyingObjectsFn = (state : IGameState) => {
 	if(!state.started) {
 		return
 	}
 	const now: number = (new Date()).getTime();
 	const { lastObjectCreatedAt, flyingObjects } = state;
-	const createNewObject = ( now - lastObjectCreatedAt.getTime() > createInterval && flyingObjects.length < maxFlyingObjects);
+	const maxTimeFilterFlyingObjects = flyingObjects.filter((object) => (
+		(now - object.createdAt) < 400
+																								));
+	const createNewObject = ( now - lastObjectCreatedAt > createInterval && flyingObjects.length < maxFlyingObjects);
 
 	if(!createNewObject) {
 		return
@@ -32,8 +35,9 @@ const createFlyingObjects = (state : IGameState) => {
 		createdAt: (new Date()).getTime(),
 		id: id
 	};
-	state.flyingObjects = [...state.flyingObjects, newFlyingObject];
-	state.lastObjectCreatedAt = new Date();
+	console.log("Reducer hay");
+	state.flyingObjects = [...maxTimeFilterFlyingObjects, newFlyingObject];
+	state.lastObjectCreatedAt = new Date().getTime();
 }
 
 export const gameSlice = createSlice({
@@ -44,11 +48,12 @@ export const gameSlice = createSlice({
 			state.started = true;
 			state.kills = 0;
 			state.lives = 3;
-
 		},
-		createFlyingObjects
+		createFlyingObjects: (state): void => {
+			createFlyingObjectsFn(state);
+		}
 	}
 });
 
-export const { startGame } = gameSlice.actions;
+export const { startGame, createFlyingObjects } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

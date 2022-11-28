@@ -11,7 +11,7 @@ import Heart from "./Heart";
 import StartGame from "./StartGame";
 import Title from "./Title";
 
-import { IGameState } from "../models/models";
+import { IGameState, IFlyingObject } from "../models/models";
 
 const Canvas = ({
 	angle,
@@ -28,7 +28,7 @@ const Canvas = ({
 		window.innerWidth
 	}, ${window.innerHeight}`;
 	
-	const { started } = gameState;
+	const { started, flyingObjects } = gameState;
 
 	return (
 		<svg
@@ -49,12 +49,9 @@ const Canvas = ({
 			<CannonBall position={{ x: 0, y: -80 }} />
 			<CurrentScore score={15} position={{ x: 100, y: 80 }} />
 			<Heart position={{ x: -150, y: 50 }} />
-			{started && (
-				<g>
-					<FlyingObject position={{ x: 120, y: -350 }} />
-					<FlyingObject position={{ x: -120, y: -350 }} />
-				</g>
-			)}
+			{flyingObjects.map((flyingObject: IFlyingObject) => (
+					<FlyingObject key={flyingObject.id} position={flyingObject.position} />
+			))}
 			{!started && (
 				<g>
 					<StartGame onClick={() => startGame()} />

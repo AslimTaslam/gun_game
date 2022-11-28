@@ -15,8 +15,8 @@ export const gunObjectSlice = createSlice({
 	initialState,
 	reducers: {
 		moveObjects: (state, action: PayloadAction<PointsType>) => {
-			if(!action.payload) return state;
-			const { x, y } = action.payload;
+			const mousePosition = action.payload || {x: 0, y: 0 };
+			const { x, y } = mousePosition;
 			const angle = calculateAngle(0, 0, x, y);
 			state.angle = angle;
 		}
